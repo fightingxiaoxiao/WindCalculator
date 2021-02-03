@@ -1,0 +1,19 @@
+{
+    "comment_0": "分区后的.obj Group文件",
+    "partitionFilename": "D:/CFDInterface/test/building_repair.obj",
+    
+    "comment_1": "平移几何",
+    "partitionObjectTransformVector": [262.5, 18.0, 0.0],
+    
+    "comment_2": "数据点文件",
+    "dataFilename": "D:/CFDInterface/test/struct_data_90.csv",
+
+    "comment_3": "数据点旋转角",
+    "pointCloudRotateAngle": 90,
+
+    "comment_4": "容许误差",
+    "tolerance": 0.1,
+
+    "comment_5": "体型系数输出文件名",
+    "pressureCoeffFilename": "D:/CFDInterface/test/90.csv"
+}

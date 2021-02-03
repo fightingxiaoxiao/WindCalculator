@@ -1,0 +1,7 @@
+{
+    "partitionFilename": "D:\\CFDInterface\\test\\building_repair.obj",
+    "dataFilename": "D:\\CFDInterface\\test\\struct_data_90.csv",
+    "pointCloudRotateAngle": 90,
+    "tolerance": 0.1,
+    "pressureCoeffFilename": "D:\\CFDInterface\\test\\90.csv"
+}
