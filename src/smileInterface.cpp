@@ -38,7 +38,8 @@ int main()
     {
         std::cerr << "done\n" << std::endl;
     }
-    model.transform(262.5, 18., 0.);
+    auto moveVector =  jsonArgs["partitionObjectTransformVector"];
+    model.transform(moveVector[0], moveVector[1], moveVector[2]);
 
     model.calcFaceCenter();
     model.calcAABB(true);
@@ -104,31 +105,34 @@ int main()
 
     std::ofstream pressCoeffFile((String)jsonArgs["pressureCoeffFilename"]);
 
+
+    Scalar rhoAir = jsonArgs["rhoAir"];
     // Force
     Vector F = cloud.integralVector("p", "normal(Area)");
-    std::cout << "F = " << (F / 1e3 * 1.205).format(CommaInitFmt) << std::endl;
+    std::cout << "F = " << (F / 1e3).format(CommaInitFmt) << std::endl; // OpenFAOM处理时要*rhoAir
     // Force write
     pressCoeffFile << "Fx, Fy, Fz (kN)" << std::endl;
-    pressCoeffFile << (F / 1e3 * 1.205).format(CSVWriteFmt) << "\n"
+    pressCoeffFile << (F / 1e3).format(CSVWriteFmt) << "\n"
                    << std::endl;
 
     // Moment
     Vector ref = (cloud.AA + cloud.BB) / 2.;
     ref(2) = 0.;
     Vector M = cloud.integralVectorWithCoord("p", "normal(Area)", ref);
-    std::cout << "M = " << (M / 1e3 * 1.205).format(CommaInitFmt) << std::endl;
+    std::cout << "M = " << (M / 1e3).format(CommaInitFmt) << std::endl;
     // Moment write
     pressCoeffFile << "Mx, My, Mz (kN*m)" << std::endl;
-    pressCoeffFile << (M / 1e3 * 1.205).format(CSVWriteFmt) << "\n"
+    pressCoeffFile << (M / 1e3).format(CSVWriteFmt) << "\n"
                    << std::endl;
 
+    Scalar windVelocity = jsonArgs["windVelocity"];
     // pressCoeff write
     pressCoeffFile << "Region, pCoeff" << std::endl;
     for (auto zone : model.subZone)
     {
         zone.second.calculateValueFromFace("p", "normal(Area)");
         pressCoeffFile << zone.first << ", "
-                       << zone.second.averageValue["p"] / 0.5 / 86 / 86
+                       << zone.second.averageValue["p"] / 0.5 /rhoAir / windVelocity / windVelocity
                        << std::endl;
     }
     std::cout << "The pressure coefficient has been writen to "
