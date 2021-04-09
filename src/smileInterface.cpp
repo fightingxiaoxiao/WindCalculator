@@ -67,13 +67,14 @@ int main()
               << ", K = " << bkgMesh->K << std::endl;
     bkgMesh->linkRelatedFaces(&model);
 
+    auto index = jsonArgs["dataIndex"];
     SmileGL::PointCloud cloud; // 建立数据点云模型
-    int coordLocation[3] = {1, 2, 3};
+    int coordLocation[3] = {index[0], index[1], index[2]};
     Map<String, label> valueLocation;
-    valueLocation.insert(std::pair<String, label>("normalX(Area)", 4));
-    valueLocation.insert(std::pair<String, label>("normalY(Area)", 5));
-    valueLocation.insert(std::pair<String, label>("normalZ(Area)", 6));
-    valueLocation.insert(std::pair<String, label>("p", 7));
+    valueLocation.insert(std::pair<String, label>("normalX(Area)", index[3]));
+    valueLocation.insert(std::pair<String, label>("normalY(Area)", index[4]));
+    valueLocation.insert(std::pair<String, label>("normalZ(Area)", index[5]));
+    valueLocation.insert(std::pair<String, label>("p", index[6]));
     std::cout << "\n";
     cloud.readData(jsonArgs["dataFilename"], coordLocation, valueLocation,
                    true); // 读取外部点云数据

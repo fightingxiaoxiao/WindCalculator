@@ -21,5 +21,8 @@
     "rhoAir": 1.205,
 
     "comment_7": "参考风速",
-    "windVelocity": 86.0
+    "windVelocity": 86.0,
+
+    "comment_8": "变量X Y Z AreaX AreaY AreaZ p在csv中的列号，起始为0",
+    "dataIndex": [1, 2, 3, 4, 5, 6, 7]
 }
