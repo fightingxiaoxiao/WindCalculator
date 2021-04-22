@@ -16,7 +16,6 @@
  */
 #include "mesh.h"
 
-
 int main()
 {
     std::cout << "----------------------------\n\n"
@@ -31,15 +30,17 @@ int main()
     auto model = SmileGL::Surface(); //读取obj建立表面模型
     if (model.readOBJ(jsonArgs["partitionFilename"]))
     {
-        std::cerr << "error\n" << std::endl;
+        std::cerr << "error\n"
+                  << std::endl;
         return 1;
     }
     else
     {
-        std::cerr << "done\n" << std::endl;
+        std::cerr << "done\n"
+                  << std::endl;
     }
-    auto moveVector =  jsonArgs["partitionObjectTransformVector"];
-    model.transform(moveVector[0], moveVector[1], moveVector[2]);
+    auto moveVector = jsonArgs["partitionObjectTransformVector"];
+    model.transform((Scalar)moveVector[0], (Scalar)moveVector[1], (Scalar)moveVector[2]);
 
     model.calcFaceCenter();
     model.calcAABB(true);
@@ -60,7 +61,7 @@ int main()
 
     std::cout << "Block start point: " << rPoint.format(CommaInitFmt) << "\n"
               << "Block element size: " << blockSize << std::endl;
-    SmileGL::Block* bkgMesh = new SmileGL::Block(rPoint, sizeI, sizeJ, sizeK, blockSize);
+    SmileGL::Block *bkgMesh = new SmileGL::Block(rPoint, sizeI, sizeJ, sizeK, blockSize);
 
     std::cout << "Final block size:  "
               << "I = " << bkgMesh->I << ", J = " << bkgMesh->J
@@ -96,16 +97,16 @@ int main()
 
     std::cout << "map surface from cloud." << std::endl;
     bkgMesh->mapSurfaceFromPointCloud(&cloud, &model, jsonArgs["tolerance"]);
+
     delete bkgMesh;
-    
     cloud.convertDataToSurface(&model);
 
     model.splitSubZone();
 
-    std::cout << "\n**********CALCULATION RESULT**********\n" << std::endl;
+    std::cout << "\n**********CALCULATION RESULT**********\n"
+              << std::endl;
 
     std::ofstream pressCoeffFile((String)jsonArgs["pressureCoeffFilename"]);
-
 
     Scalar rhoAir = jsonArgs["rhoAir"];
     // Force
@@ -133,7 +134,7 @@ int main()
     {
         zone.second.calculateValueFromFace("p", "normal(Area)");
         pressCoeffFile << zone.first << ", "
-                       << zone.second.averageValue["p"] / 0.5 /rhoAir / windVelocity / windVelocity
+                       << zone.second.averageValue["p"] / 0.5 / rhoAir / windVelocity / windVelocity
                        << std::endl;
     }
     std::cout << "The pressure coefficient has been writen to "

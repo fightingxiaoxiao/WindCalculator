@@ -1,21 +1,21 @@
 {
     "comment_0": "分区后的.obj Group文件",
-    "partitionFilename": "/run/media/smilemax/Data/WindCalculator/test/building_repair.obj",
+    "partitionFilename": "/run/media/smilemax/Data/WindCalculator/test/2.obj",
 
     "comment_1": "平移几何",
-    "partitionObjectTransformVector": [262.5, 18.0, 0.0],
+    "partitionObjectTransformVector": [0.0, 0.0, 0.0],
 
     "comment_2": "数据点文件",
-    "dataFilename": "/run/media/smilemax/Data/WindCalculator/test/struct_data_90.csv",
+    "dataFilename": "/run/media/smilemax/Data/WindCalculator/test/facepressure",
 
     "comment_3": "数据点旋转角",
-    "pointCloudRotateAngle": 90,
+    "pointCloudRotateAngle": 0,
 
     "comment_4": "容许误差",
-    "tolerance": 0.1,
+    "tolerance": 0.5,
 
     "comment_5": "体型系数输出文件名",
-    "pressureCoeffFilename": "/run/media/smilemax/Data/WindCalculator/test/90.csv",
+    "pressureCoeffFilename": "/run/media/smilemax/Data/WindCalculator/test/2.csv",
 
     "comment_6": "空气密度",
     "rhoAir": 1.205,
@@ -24,5 +24,5 @@
     "windVelocity": 86.0,
 
     "comment_8": "变量X Y Z AreaX AreaY AreaZ p在csv中的列号，起始为0",
-    "dataIndex": [1, 2, 3, 4, 5, 6, 7]
+    "dataIndex": [1, 2, 3, 8, 9, 10, 4]
 }

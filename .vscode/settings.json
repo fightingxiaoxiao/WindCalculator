@@ -109,5 +109,11 @@
     },
     "cmake.buildEnvironment": {
         "CMAKE_TOOLCHAIN_FILE": "C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
-    }
+    },
+    "spellright.language": [],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex"
+    ],
+    "cmake.configureOnOpen": false
 }
